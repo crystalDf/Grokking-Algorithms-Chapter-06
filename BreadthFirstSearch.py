@@ -21,16 +21,22 @@ def breadth_first_search(name):
     search_sequence = deque()
     search_sequence += graph[name]
 
+    searched = []
+
     while search_sequence:
 
         person = search_sequence.popleft()
 
-        if person_is_seller(person):
-            print(person + " is a mango seller!")
-            return True
-        else:
-            search_sequence += graph[person]
+        if person not in searched:
+
+            if person_is_seller(person):
+                print(person + " is a mango seller!")
+                return True
+            else:
+                search_sequence += graph[person]
+                searched += person
 
     return False
+
 
 breadth_first_search("you")
